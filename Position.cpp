@@ -39,4 +39,8 @@ bool Position::operator<(const Position& pos) const {
 bool Position::operator!=(const Position& pos) const {
     return !(x == pos.x && y == pos.y);
 }
-constexpr Position& Position::operator=(const Position&) = default;
+constexpr Position& Position::operator=(const Position& p){
+    x=p.x;
+    y=p.y;
+    return *this;
+}
