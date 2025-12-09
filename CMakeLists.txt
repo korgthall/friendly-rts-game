@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.26)
+cmake_minimum_required(VERSION 3.5)
 
 # NOTE: update executable name in .github/workflows/cmake.yml:25 when changing executable name in this file
 # for now, the project name is used as the executable name
@@ -35,7 +35,7 @@ set(WARNINGS_AS_ERRORS OFF)
 FetchContent_Declare(
     SFML
     GIT_REPOSITORY https://github.com/SFML/SFML.git
-    GIT_TAG        3.0.0
+    GIT_TAG        3.0.2
     # GIT_TAG        7f1162dfea4969bc17417563ac55d93b72e84c1e # 3.0.0
     # GIT_TAG        origin/master
     GIT_SHALLOW    1  # works only with branches or tags, not with arbitrary commit hashes
@@ -59,7 +59,21 @@ endif()
 add_executable(${MAIN_EXECUTABLE_NAME}
     main.cpp
     generated/src/Helper.cpp
-)
+        Position.cpp
+        Position.h
+        Enums.h
+        Resource.cpp
+        Resource.h
+        Building.cpp
+        Building.h
+        Unit.cpp
+        Unit.h
+        Worker.cpp
+        Worker.h
+        GameEngine.cpp
+        GameEngine.h
+        Exceptions.h
+    )
 
 # NOTE: Add all defined targets (e.g. executables, libraries, etc. )
 # NOTE: RUN_SANITIZERS is optional, if it's not present it will default to true
