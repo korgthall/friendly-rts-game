@@ -9,9 +9,9 @@
 class Worker : public Unit {
     Tasks task;
     BuildingType toBuild;
-    int totalCapacity;
-    int currentCapacity;
-    int gatherSpeed;
+    //int totalCapacity;
+    //int currentCapacity;
+    //int gatherSpeed;
     Position buildTarget;
 public:
     Worker(const Position &pos, int hp, int dmg, int range, int vision, int spd, int owner,

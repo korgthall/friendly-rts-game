@@ -8,8 +8,8 @@ class Building {
     int buildingId;
     Position position;
     int hitPoints;
-    int owner;
-    BuildingType type;
+    //int owner;
+    //BuildingType type;
 
 public:
     Building(const Position &build_position, const BuildingType &build_type,

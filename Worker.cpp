@@ -5,8 +5,7 @@ Worker::Worker(const Position &position, const int hit_points, const int attack_
                const Tasks task, const int total_capacity, const int current_capacity,
                const int gather_speed) : Unit(position, hit_points, attack_damage, attack_range, vision_range, speed,
                                               owner),
-                                         task(task), toBuild(BuildingType::HUB), totalCapacity(total_capacity), currentCapacity(current_capacity),
-                                         gatherSpeed(gather_speed), buildTarget(position) {
+                                         task(task), toBuild(BuildingType::HUB), buildTarget(position) {
 }
 
 
