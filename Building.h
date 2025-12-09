@@ -8,12 +8,12 @@ class Building {
     int buildingId;
     Position position;
     int hitPoints;
-    //int owner;
-    //BuildingType type;
+    int owner;
+    BuildingType type;
 
 public:
-    Building(const Position &build_position,
-    int hit_points);
+    Building(const Position &build_position, const BuildingType &build_type,
+             const int hit_points, const int owner);
     [[nodiscard]] int getId() const;
     [[nodiscard]] Position getPosition() const;
     void takeDamage(int amount);

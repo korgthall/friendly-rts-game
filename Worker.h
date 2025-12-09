@@ -9,13 +9,13 @@
 class Worker : public Unit {
     Tasks task;
     BuildingType toBuild;
-    //int totalCapacity;
-    //int currentCapacity;
-    //int gatherSpeed;
+    int totalCapacity;
+    int currentCapacity;
+    int gatherSpeed;
     Position buildTarget;
 public:
     Worker(const Position &pos, int hp, int dmg, int range, int vision, int spd, int owner,
-           Tasks t);
+           Tasks t, int cap, int curCap, int gSpd);
     void setTask(Tasks newTask);
     Tasks getTask() const;
 
