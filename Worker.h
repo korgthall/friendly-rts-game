@@ -15,7 +15,7 @@ class Worker : public Unit {
     Position buildTarget;
 public:
     Worker(const Position &pos, int hp, int dmg, int range, int vision, int spd, int owner,
-           Tasks t, int cap, int curCap, int gSpd);
+           Tasks t);
     void setTask(Tasks newTask);
     Tasks getTask() const;
 

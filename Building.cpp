@@ -2,8 +2,8 @@
 
 int Building::nextId = 10000;
 
-Building::Building(const Position &build_position, const BuildingType &build_type,
-                   const int hit_points, const int owner)
+Building::Building(const Position &build_position,
+                   const int hit_points)
     : buildingId(nextId++), position(build_position), hitPoints(hit_points){
 }
 [[nodiscard]] int Building::getId() const
