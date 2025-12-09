@@ -2,6 +2,9 @@
 #include "GameEngine.h"
 
 int main() {
+    Position position(2,2);
+    Position pos(3,3);
+    pos = position;
     sf::RenderWindow window(sf::VideoMode({1280, 720}), "The Glorbz");
     window.setFramerateLimit(60);
 
