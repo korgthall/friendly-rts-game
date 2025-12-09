@@ -20,6 +20,7 @@ public:
     bool operator<(const Position& other) const;
     bool operator==(const Position& pos) const;
     bool operator!=(const Position& pos) const;
+    constexpr Position& operator=(const Position&);
 };
 
 #endif
