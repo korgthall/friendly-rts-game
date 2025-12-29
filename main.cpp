@@ -2,9 +2,12 @@
 #include "GameEngine.h"
 
 int main() {
-    Position position(2,2);
+    Position position(2,2);\
+    std::cout << position.getX();
     Position pos(3,3);
-    pos = position;
+    std::cout << pos.getX();
+    position = pos;
+    std::cout << position.getX();
     sf::RenderWindow window(sf::VideoMode({1280, 720}), "The Glorbz");
     window.setFramerateLimit(60);
 
@@ -25,7 +28,6 @@ int main() {
         }
 
         game->Update(deltaTime);
-
         window.clear();
         game->render(window);
         window.display();
