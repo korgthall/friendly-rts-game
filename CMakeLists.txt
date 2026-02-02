@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.26)
-
+set(CMAKE_POLICY_VERSION_MINIMUM "3.5")
 # NOTE: update executable name in .github/workflows/cmake.yml:25 when changing executable name in this file
 # for now, the project name is used as the executable name
 set(MAIN_PROJECT_NAME "oop")
@@ -40,12 +40,12 @@ set(WARNINGS_AS_ERRORS OFF)
 
 # NOTE: Also update SFML_VERSION env var in .github/workflows/cmake.yml:33
 FetchContent_Declare(
-    SFML
-    GIT_REPOSITORY https://github.com/SFML/SFML.git
-    GIT_TAG        3.0.0
-    # GIT_TAG        7f1162dfea4969bc17417563ac55d93b72e84c1e # 3.0.0
-    # GIT_TAG        origin/master
-    GIT_SHALLOW    1  # works only with branches or tags, not with arbitrary commit hashes
+        SFML
+        GIT_REPOSITORY https://github.com/SFML/SFML.git
+        GIT_TAG        3.0.0
+        # GIT_TAG        7f1162dfea4969bc17417563ac55d93b72e84c1e # 3.0.0
+        # GIT_TAG        origin/master
+        GIT_SHALLOW    1  # works only with branches or tags, not with arbitrary commit hashes
 )
 
 FetchContent_MakeAvailable(SFML)
@@ -70,11 +70,41 @@ elseif(UNIX)
 endif()
 
 ###############################################################################
+set(SOURCES
+        src/Position.cpp
+        src/Resource.cpp
+        src/Building.cpp
+        src/Unit.cpp
+        src/Worker.cpp
+        src/Soldier.cpp
+        src/GameEngine.cpp
+        src/Entity.cpp
+        src/UnitFactory.cpp
+        src/UnitStates.cpp
+)
 
+set(HEADERS
+        headers/Position.h
+        headers/Resource.h
+        headers/Building.h
+        headers/Unit.h
+        headers/Worker.h
+        headers/Soldier.h
+        headers/GameEngine.h
+        headers/Entity.h
+        headers/UnitFactory.h
+        headers/UnitStates.h
+        headers/State.h
+        headers/Enums.h
+        headers/Exceptions.h
+        headers/TaskQueue.h
+)
 # NOTE: update executable name in .github/workflows/cmake.yml:25 when changing name here
 add_executable(${MAIN_EXECUTABLE_NAME}
-    main.cpp
-    generated/src/Helper.cpp
+        main.cpp
+        generated/src/Helper.cpp
+        ${SOURCES}
+        ${HEADERS}
 )
 
 # NOTE: Add all defined targets (e.g. executables, libraries, etc. )
@@ -88,9 +118,13 @@ set_compiler_flags(RUN_SANITIZERS TRUE TARGET_NAMES ${MAIN_EXECUTABLE_NAME})
 
 # use SYSTEM so cppcheck and clang-tidy do not report warnings from these directories
 target_include_directories(${MAIN_EXECUTABLE_NAME} SYSTEM PRIVATE generated/include)
+target_include_directories(${MAIN_EXECUTABLE_NAME} PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/headers"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src"
+)
 # target_include_directories(${MAIN_EXECUTABLE_NAME} SYSTEM PRIVATE ext/<SomeHppLib>/include)
+file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/assets" DESTINATION "${CMAKE_BINARY_DIR}")
 target_include_directories(${MAIN_EXECUTABLE_NAME} SYSTEM PRIVATE ${SFML_SOURCE_DIR}/include)
-
 target_link_directories(${MAIN_EXECUTABLE_NAME} PRIVATE ${SFML_BINARY_DIR}/lib)
 target_link_libraries(${MAIN_EXECUTABLE_NAME} PRIVATE SFML::Graphics SFML::Window SFML::System Threads::Threads)
 
