@@ -3,10 +3,9 @@
 #include "headers/Soldier.h"
 #include "headers/Worker.h"
 #include "headers/Building.h"
-#include "headers/Exceptions.h"
 
 int main() {
-    {
+   {
         Soldier dummyS(Position(0,0), 1);
         dummyS.attack(); 
 
@@ -28,7 +27,7 @@ int main() {
     sf::RenderWindow window(sf::VideoMode({1280, 720}), "The Glorbz");
     window.setFramerateLimit(60);
 
-    GameEngine* game = GameEngine::getInstance();
+    GameEngine *game = GameEngine::getInstance();
     game->StartGame(window);
 
     sf::Clock clock;
