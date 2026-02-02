@@ -3,24 +3,32 @@
 #include "headers/Soldier.h"
 #include "headers/Worker.h"
 #include "headers/Building.h"
+#include "headers/Exceptions.h"
 
 int main() {
     {
-        Soldier dummyS(Position(0, 0), 1);
-        dummyS.attack();
+        Soldier dummyS(Position(0,0), 1);
+        dummyS.attack(); 
 
-        Worker dummyW(Position(0, 0), 100, 5, 1, 5, 1, 1, 50, 0, 10);
+        Worker dummyW(Position(0,0), 100, 5, 1, 5, 1, 1, 50, 0, 10);
         dummyW.attack();
+        
+        Building dummyB(Position(0,0), BuildingType::HUB, 100, 1);
+        (void)dummyB.getQueueSize(); 
+        dummyB.setStoredResources(0); 
+        (void)dummyB.isProducing();
 
-        Building dummyB(Position(0, 0), BuildingType::HUB, 100, 1);
-        (void) dummyB.getQueueSize();
-        dummyB.setStoredResources(0);
+        GameEngine* ge = GameEngine::getInstance();
+        (void)ge->findNearestBuilding(Position(0,0), BuildingType::HUB, 1);
+
+        GameException ex("test");
+        (void)ex.what(); 
     }
 
     sf::RenderWindow window(sf::VideoMode({1280, 720}), "The Glorbz");
     window.setFramerateLimit(60);
 
-    GameEngine *game = GameEngine::getInstance();
+    GameEngine* game = GameEngine::getInstance();
     game->StartGame(window);
 
     sf::Clock clock;
